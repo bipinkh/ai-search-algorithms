@@ -1,7 +1,8 @@
-from resources.tools import *
-from resources import tools
 import itertools
 from heapq import heappush, heappop, heapify
+
+import tools
+from tools import *
 
 
 def A_Star_search(start_node):

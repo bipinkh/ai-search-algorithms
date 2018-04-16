@@ -1,13 +1,13 @@
 import argparse
 import timeit
 
-from resources.ast import A_Star_search
-from resources.bfs import breadth_first_search
-from  resources.dfs import depth_first_search
-from resources.tools import *
-from resources.node import Node
-import resource
+# import resource
+from ast import A_Star_search
+from bfs import breadth_first_search
+from  dfs import depth_first_search
+from tools import *
 
+from node import Node
 
 function_mapper = {
     'bfs': breadth_first_search,
@@ -52,7 +52,7 @@ def printResult(duration , result):
         file.write("\nsearch_depth: " + str(result['goal_node'].depth))
         file.write("\nmax_search_depth: " + str(result['max_search_depth']))
         file.write("\nrunning_time: " + format(duration, '.8f'))
-        file.write("\nmax_ram_usage: " + format(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000.0, '.8f'))
+        # file.write("\nmax_ram_usage: " + format(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000.0, '.8f'))
         file.close()
 
 

@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from resources.node import Node
+from node import Node
 
 # final goal state
 goal_state = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]

@@ -1,7 +1,8 @@
 from collections import deque
 
-from resources.tools import *
-from resources import tools
+import tools
+from tools import *
+
 
 def breadth_first_search(start_node):
 
