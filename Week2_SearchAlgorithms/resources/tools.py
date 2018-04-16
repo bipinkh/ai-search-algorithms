@@ -2,6 +2,19 @@ from copy import deepcopy
 
 from resources.node import Node
 
+# final goal state
+goal_state = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+
+# format for result
+result_dict = {
+        'goal_node' : None,
+        'max_frontier_size' : 0,
+        'max_search_depth' : 0,
+        'number_nodes_expanded' : 0,
+        'moves' : list(),
+        'costs' : set()
+}
+
 
 def state_from_string(configuration):
     global board_len, board_side

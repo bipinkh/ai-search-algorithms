@@ -6,18 +6,17 @@ class Node:
         self.state = state  # 2D Array of state
         self.depth = depth
         self.__map()
-        self.g = g
-        self.heuristics = 0
+        self.g = g  # real cost to reach this node
+        self.h = 0  # cost to reach goal node
 
     def __map(self):
         self.map = ''.join(str(r) for v in self.state for r in v)
 
-    def set_heuristics(self, heuristics):
-        self.heuristics = heuristics
+    def set_h(self, heuristics):
+        self.h = heuristics
 
     def set_g(self, g):
         self.g = g
-
 
     def getEmptyBlockPosition(self):
         for row in range(0, 3):
