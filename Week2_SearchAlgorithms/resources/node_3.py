@@ -1,6 +1,6 @@
 class Node:
 
-    def __init__(self, parent_node = None, move=None, state=None, depth=0, g=0, visited = False):
+    def __init__(self, parent_node = None, move=None, state=None, depth=0, g=0):
         self.parent_node = parent_node  # the anccestor of this node
         self.move = move    # Up, Down, Left, Right
         self.state = state  # 2D Array of state
@@ -8,7 +8,6 @@ class Node:
         self.__map()
         self.g = g
         self.heuristics = 0
-        self.visited = False    # if this node is already visited or not
 
     def __map(self):
         self.map = ''.join(str(r) for v in self.state for r in v)

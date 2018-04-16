@@ -1,10 +1,11 @@
 import argparse
-from asyncore import read
 import timeit
-from node_3 import Node
-from bfs_3 import breadth_first_search
-from  dfs_3 import depth_first_search
-from ast_3 import A_Star_search
+
+from resources.ast_3 import A_Star_search
+from resources.bfs_3 import breadth_first_search
+from  resources.dfs_3 import depth_first_search
+from resources.tools_3 import *
+from resources.node_3 import Node
 
 # Controls: True or False
 is_print = False
@@ -38,15 +39,37 @@ def main():
     parser.add_argument('search_algorithm', 'initial_state')
     args = parser.parse_args()
 
-    initial_state = read(args.initial_state)
-    initial_node = Node(None, None, initial_state, 0, 0, False)
+    initial_state = state_from_string(args.initial_state)
+    initial_node = Node(None, None, initial_state, 0, 0)
     func = function_mapper[args.search_algorithm]
 
     # let's calculate the time of execution
     start = timeit.default_timer()
     func(initial_node)
     stop = timeit.default_timer()
-    # export(goal_node, stop - start)
+    printResult(goal_node, stop - start)
+
+
+def printResult(reached_goal_node, duration):
+    global nodes_expanded, max_frontier_size, max_search_depth
+
+    moves = []
+    node = reached_goal_node;
+    while node.parent_node is not None:
+        moves.append(node.move)
+        node = node.parent_node
+    moves.reverse()
+
+    file = open('output.txt', 'w')
+    file.write("path_to_goal: " + str(moves))
+    file.write("\ncost_of_path: " + str(len(moves)))
+    file.write("\nnodes_expanded: " + str(nodes_expanded))
+    file.write("\nsearch_depth: " + str(goal_node.depth))
+    file.write("\nmax_search_depth: " + str(max_search_depth))
+    file.write("\nrunning_time: " + format(duration, '.8f'))
+    # file.write("\nmax_ram_usage: " + format(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000.0, '.8f'))
+    file.close()
+
 
 
 if __name__ == '__main__':

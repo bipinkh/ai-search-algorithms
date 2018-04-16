@@ -1,5 +1,16 @@
-from node_3 import Node
 from copy import deepcopy
+
+from resources.node_3 import Node
+
+
+def state_from_string(configuration):
+    global board_len, board_side
+    data = map(int, configuration.split(","))
+    return to_matrix(data, 3)
+
+def to_matrix(l, n):
+    return [l[i:i + n] for i in xrange(0, len(l), n)]
+
 
 # generating and returning children of a state
 # the move order is UDLR (Up, Down, Left, Right)
